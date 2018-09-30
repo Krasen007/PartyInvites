@@ -10,15 +10,16 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
-        Hello People, lets go party and
-        @ViewBag.Greeting World (from the view)
+    <div class="text-center">
+        <h3>
+            @ViewBag.Greeting, You are invited to our party!
+        </h3>
+        <h4>Only select people will attend, so please use the form below to RSVP</h4>
 
-        <p> Please rsvp if you want to attend using the link below.</p>
-        <a asp-action="RsvpForm">RSVP Now</a>
-
+        <a class="btn btn-primary" asp-action="RsvpForm">RSVP Now</a>
     </div>
 </body>
 </html>

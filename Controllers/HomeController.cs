@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PartyInvites.Models;
 using System;
+using System.Linq;
 
 namespace PartyInvites.Controllers
 {
@@ -10,20 +11,33 @@ namespace PartyInvites.Controllers
         {
             int hour = DateTime.Now.Hour;
             this.ViewBag.Greeting = hour < 12 ? "Good Morning" : "Good Afternoon";
-            return View("MyView");
+            return this.View("MyView");
         }
 
         [HttpGet]
         public ViewResult RsvpForm()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
         public ViewResult RsvpForm(GuestResponse guestResponse)
         {
-            //TODO: Store response from guest
-            return View();
+            if (ModelState.IsValid)
+            {
+                Repository.AddResponse(guestResponse);
+                return this.View("Thanks", guestResponse);
+            }
+            else
+            {
+                // there is some validation error so
+                return this.View();
+            }
+        }
+
+        public ViewResult ListResponses()
+        {
+            return View(Repository.Responses.Where(response => response.WillAttend == true));
         }
     }
 }
