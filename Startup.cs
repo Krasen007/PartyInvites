@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,18 +33,18 @@ namespace PartyInvites
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
+            ////if (env.IsDevelopment())
+            ////{
+            ////    app.UseDeveloperExceptionPage();
+            ////}
+            ////else
+            ////{
 #pragma warning disable S1075 // URIs should not be hardcoded
                 const string ErrorPath = "/Home/Error";
 #pragma warning restore S1075 // URIs should not be hardcoded
                 app.UseExceptionHandler(ErrorPath);
                 app.UseHsts();
-            }
+            ////}
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
