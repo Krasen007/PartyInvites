@@ -44,7 +44,10 @@ namespace PartyInvites
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+#pragma warning disable S1075 // URIs should not be hardcoded
+                const string ErrorPath = "/Home/Error";
+#pragma warning restore S1075 // URIs should not be hardcoded
+                app.UseExceptionHandler(ErrorPath);
                 app.UseHsts();
             }
 
